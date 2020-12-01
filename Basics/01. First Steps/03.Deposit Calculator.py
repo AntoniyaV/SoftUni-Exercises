@@ -1,0 +1,5 @@
+deposit = float(input())
+period = int(input())
+increase = float(input())
+sum = deposit+(period*((deposit*increase/100)/12))
+print(sum)
