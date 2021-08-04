@@ -1,0 +1,9 @@
+<h1 class="text-center">Sign In</h1>
+<div class="row d-flex justify-content-center">
+
+    <form action="{% url 'sign-in' %}" method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button> Sign in</button>
+    </form>
+</div>
