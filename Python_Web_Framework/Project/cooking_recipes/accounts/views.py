@@ -22,7 +22,7 @@ def sign_in(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('sign-up')
+            return redirect('landing')
 
     else:
         form = SignInForm()
@@ -36,4 +36,4 @@ def sign_in(request):
 
 def sign_out(request):
     logout(request)
-    return redirect('sign-in')
+    return redirect('landing')

@@ -26,6 +26,12 @@ class RecipesUser(AbstractBaseUser, PermissionsMixin):
 
     objects = RecipesUserManager()
 
+    def get_full_name(self):
+        full_name = f'{self.first_name} {self.last_name}'
+        if full_name == ' ':
+            return None
+        return full_name
+
 
 class RecipesUserProfile(models.Model):
     profile_picture = models.ImageField(

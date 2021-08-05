@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+    <h1 class="text-center">Add new recipe</h1>
+    <div class="container">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <form enctype="multipart/form-data" method="post" class="furniture-form" action="{% url 'create-recipe' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ form.errors }}
+                <button class="btn btn-primary mt-2" type="submit">Create</button>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+{% endblock %}

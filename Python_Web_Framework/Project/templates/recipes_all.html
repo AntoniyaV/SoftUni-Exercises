@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="home-page-section">
+        <div class="home-page-container container">
+            {% for recipe in recipe_list %}
+                <div class="recipe-card">
+                    <h2 class="recipe-title">{{ recipe.name }}</h2>
+                    <img class="recipe-image" src="{{ recipe.image.url }}" alt="">
+                    <p><a href="">See details</a></p>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

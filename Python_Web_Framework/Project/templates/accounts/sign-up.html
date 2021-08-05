@@ -1,9 +1,11 @@
-<h1 class="text-center">Sign Up</h1>
-<div class="row d-flex justify-content-center">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 
+<h1 class="text-center">Sign Up</h1>
+<div class="container">
     <form action="{% url 'sign-up' %}" method="post" class="form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button> Sign up</button>
+        <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
 </div>
