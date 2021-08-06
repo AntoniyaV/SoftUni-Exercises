@@ -7,10 +7,10 @@ UserModel = get_user_model()
 
 
 class Recipe(models.Model):
-    MAIN_DISH = 'main_dish'
-    SOUP = 'soup'
-    SALAD = 'salad'
-    DESSERT = 'dessert'
+    MAIN_DISH = 'Main Dish'
+    SOUP = 'Soup'
+    SALAD = 'Salad'
+    DESSERT = 'Dessert'
     recipe_category_choices =[
         (MAIN_DISH, 'Main Dish'),
         (SOUP, 'Soup'),

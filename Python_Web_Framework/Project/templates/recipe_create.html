@@ -1,4 +1,4 @@
-{% extends 'common/base.html' %}
+{% extends 'shared/base.html' %}
 
 {% block content %}
 
@@ -6,7 +6,7 @@
     <div class="container">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
-            <form enctype="multipart/form-data" method="post" class="furniture-form" action="{% url 'create-recipe' %}">
+            <form enctype="multipart/form-data" method="post" class="furniture-form" action="{% url 'recipe-create' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 {{ form.errors }}

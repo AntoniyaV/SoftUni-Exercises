@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model, login, logout
 from django.shortcuts import render, redirect
 
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, FormView
 
 from cooking_recipes.accounts.forms import SignUpForm, SignInForm
 
@@ -37,3 +37,7 @@ def sign_in(request):
 def sign_out(request):
     logout(request)
     return redirect('landing')
+
+
+class ProfileDetailsView(FormView):
+    template_name = 'accounts/profile.html'

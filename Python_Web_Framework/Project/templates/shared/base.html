@@ -1,0 +1,46 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <title>Cooking Recipes</title>
+</head>
+
+<body>
+<div class="navigation-section">
+    <nav class="navigation-container container">
+        <a class="link-item" href="{% url 'landing' %}">Home</a>
+        <a class="link-item" href="{% url 'recipe-create' %}">Share a Recipe</a>
+
+        {% if request.user.is_authenticated %}
+            {% if request.user.get_full_name %}
+                <a class="link-item" href="">{{ request.user.get_full_name }}</a>
+            {% else %}
+                <a class="link-item" href="">{{ request.user }}</a>
+            {% endif %}
+            <a class="link-item" href="{% url 'sign-out' %}">Sign Out</a>
+        {% else %}
+            <a class="link-item" href="{% url 'sign-in' %}">Sign In</a>
+            <a class="link-item" href="{% url 'sign-up' %}">Sign Up</a>
+        {% endif %}
+    </nav>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+{#<footer>#}
+{#    <div class="navigation-section">#}
+{#        <nav class="navigation-container container">#}
+{#            <a class="link-item" href="{% url 'main-dishes' %}">Main Dishes</a>#}
+{#            <a class="link-item" href="{% url 'soups' %}">Soups</a>#}
+{#            <a class="link-item" href="{% url 'salads' %}">Salads</a>#}
+{#            <a class="link-item" href="{% url 'desserts' %}">Desserts</a>#}
+{#        </nav>#}
+{#    </div>#}
+{#</footer>#}
+</html>

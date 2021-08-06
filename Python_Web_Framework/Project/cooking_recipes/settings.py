@@ -19,6 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-dl=l_yw0dc0)25$6fn9hhq)=8s$!8019re893-f4(ifpt4wy3u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
 
     'cooking_recipes.accounts',
     'cooking_recipes.recipes',
+    'cooking_recipes.common',
 ]
 
 MIDDLEWARE = [
@@ -79,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'recipes_db',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'postgres',
+        'PASSWORD': 'pass12345',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

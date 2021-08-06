@@ -1,0 +1,36 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 class='text-center'>Cooking Recipes</h1>
+    <h3 class='text-center' align="center">Browse through the categories:</h3>
+
+
+    <div class="home-page-section">
+        <div class="home-page-container container">
+
+            <div class="recipe-card">
+                <img class="recipe-image" src="{% static 'images/main_dish_default.jpg' %}" alt="Main Dishes">
+                <h2 class="recipe-title"><a href="{% url 'main-dishes' %}">Main Dishes</a></h2>
+
+            </div>
+
+            <div class="recipe-card">
+                <img class="recipe-image" src="{% static 'images/soup_default.jpg' %}" alt="Soups">
+                <h2 class="recipe-title"><a href="{% url 'soups' %}">Soups</a></h2>
+            </div>
+
+            <div class="recipe-card">
+                <img class="recipe-image" src="{% static 'images/salad_default.jpg' %}" alt="Salads">
+                <h2 class="recipe-title"><a href="{% url 'salads' %}">Salads</a></h2>
+            </div>
+
+            <div class="recipe-card">
+                <img class="recipe-image" src="{% static 'images/dessert_default.jpg' %}" alt="Desserts">
+                <h2 class="recipe-title"><a href="{% url 'desserts' %}">Desserts</a></h2>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
