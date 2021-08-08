@@ -34,14 +34,14 @@ class RecipesUser(AbstractBaseUser, PermissionsMixin):
 
 
 class RecipesUserProfile(models.Model):
-    profile_picture = models.ImageField(
-        upload_to='profiles',
-        blank=True,
-    )
     user = models.OneToOneField(
         RecipesUser,
         on_delete=models.CASCADE,
         primary_key=True,
+    )
+    profile_picture = models.ImageField(
+        upload_to='profiles',
+        blank=True,
     )
 
 from cooking_recipes.accounts.signals import *

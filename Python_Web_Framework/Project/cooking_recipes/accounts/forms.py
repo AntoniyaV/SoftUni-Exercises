@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.core.exceptions import ValidationError
+
+from cooking_recipes.accounts.models import RecipesUserProfile
 
 UserModel = get_user_model()
 
@@ -12,18 +14,13 @@ class SignUpForm(UserCreationForm):
         fields = ('email', 'first_name', 'last_name',)
 
 
-class SignInForm(forms.Form):
+class SignInForm(AuthenticationForm):
     user = None
 
-    email = forms.EmailField()
-    password = forms.CharField(
-        max_length=20,
-        widget=forms.PasswordInput(),
-    )
-
     def clean_password(self):
+        super().clean()
         self.user = authenticate(
-            email=self.cleaned_data['email'],
+            email=self.cleaned_data['username'],
             password=self.cleaned_data['password'],
         )
 
@@ -32,3 +29,15 @@ class SignInForm(forms.Form):
 
     def save(self):
         return self.user
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ('first_name', 'last_name')
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = RecipesUserProfile
+        fields = ('profile_picture',)

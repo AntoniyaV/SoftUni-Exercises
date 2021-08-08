@@ -1,0 +1,58 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="text-center">
+        {% if profile.user.get_full_name %}
+            <h1>Welcome to <u>{{ profile.user.get_full_name }}</u>'s profile!</h1>
+        {% else %}
+            <h1>Welcome to <u>{{ profile.user }}</u>'s profile!</h1>
+        {% endif %}
+
+        <div align="center">
+            {% if profile.profile_picture %}
+                <img class="recipe-image" src="{{ profile.profile_picture.url }}" alt="" width="140"
+                     height="140">
+            {% else %}
+                <img class="recipe-image" src="{% static 'images/profile_default.jpg' %}" alt="" width="140"
+                     height="140">
+            {% endif %}
+        </div>
+
+        {% if request.user.id == profile.user.id %}
+            <div align="center">
+                <p><a href="{% url 'profile-edit' request.user.id %}" class="btn">Edit Profile</a></p>
+            </div>
+        {% endif %}
+    </div>
+
+    <hr>
+    <div align="center">
+        {% if recipes %}
+            {% if profile.user.get_full_name %}
+                <h2>All recipes by {{ profile.user.get_full_name }}</h2>
+            {% else %}
+                <h2>All recipes by {{ profile.user }}</h2>
+            {% endif %}
+
+            {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <a href="{% url 'recipe-details' recipe.id %}">
+                        <img class="recipe-image" src="{{ recipe.image.url }}" alt="...">
+                    </a>
+                    <h3 class="recipe-title">
+                        <a href="{% url 'recipe-details' recipe.id %}">{{ recipe.name }}</a>
+                    </h3>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <div>
+                {% if request.user.id == profile.user.id %}
+                    <h2>You haven't shared any recipes yet.</h2>
+                    <a href="{% url 'recipe-create' %}" class="btn">Share a recipe</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -17,9 +17,9 @@
 
         {% if request.user.is_authenticated %}
             {% if request.user.get_full_name %}
-                <a class="link-item" href="">{{ request.user.get_full_name }}</a>
+                <a class="link-item" href="{% url 'profile-details' request.user.id %}">{{ request.user.get_full_name }}</a>
             {% else %}
-                <a class="link-item" href="">{{ request.user }}</a>
+                <a class="link-item" href="{% url 'profile-details' request.user.id %}">{{ request.user }}</a>
             {% endif %}
             <a class="link-item" href="{% url 'sign-out' %}">Sign Out</a>
         {% else %}
@@ -33,14 +33,4 @@
 {% endblock %}
 
 </body>
-{#<footer>#}
-{#    <div class="navigation-section">#}
-{#        <nav class="navigation-container container">#}
-{#            <a class="link-item" href="{% url 'main-dishes' %}">Main Dishes</a>#}
-{#            <a class="link-item" href="{% url 'soups' %}">Soups</a>#}
-{#            <a class="link-item" href="{% url 'salads' %}">Salads</a>#}
-{#            <a class="link-item" href="{% url 'desserts' %}">Desserts</a>#}
-{#        </nav>#}
-{#    </div>#}
-{#</footer>#}
 </html>

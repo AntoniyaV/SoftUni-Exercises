@@ -1,0 +1,13 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>You need to be signed in to continue.</h1>
+    <div align="center">
+    <span>Already have an account?
+        <a href="{% url 'sign-in' %}" style="color:orange">Sign in here.</a>
+    </span>
+    <p><span>New to the site?
+            <a href="{% url 'sign-up' %}" style="color:orange">Sign up here.</a>
+    </span></p>
+    </div>
+{% endblock %}

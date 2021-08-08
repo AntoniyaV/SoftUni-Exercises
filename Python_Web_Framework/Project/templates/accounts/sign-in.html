@@ -6,8 +6,10 @@
     <div align="center">
         <form action="{% url 'sign-in' %}" method="post" class="form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button class="btn">Sign in</button>
             <div>
                 <span>Don't have an account? <a href="{% url 'sign-up' %}" style="color:orange">Sign up here.</a></span>
             </div>

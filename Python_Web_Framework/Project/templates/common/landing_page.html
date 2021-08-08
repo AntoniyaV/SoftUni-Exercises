@@ -11,23 +11,31 @@
         <div class="home-page-container container">
 
             <div class="recipe-card">
-                <img class="recipe-image" src="{% static 'images/main_dish_default.jpg' %}" alt="Main Dishes">
+                <a href="{% url 'main-dishes' %}">
+                    <img class="recipe-image" src="{% static 'images/main_dish_default.jpg' %}" alt="Main Dishes">
+                </a>
                 <h2 class="recipe-title"><a href="{% url 'main-dishes' %}">Main Dishes</a></h2>
 
             </div>
 
             <div class="recipe-card">
-                <img class="recipe-image" src="{% static 'images/soup_default.jpg' %}" alt="Soups">
+                <a href="{% url 'soups' %}">
+                    <img class="recipe-image" src="{% static 'images/soup_default.jpg' %}" alt="Soups">
+                </a>
                 <h2 class="recipe-title"><a href="{% url 'soups' %}">Soups</a></h2>
             </div>
 
             <div class="recipe-card">
-                <img class="recipe-image" src="{% static 'images/salad_default.jpg' %}" alt="Salads">
+                <a href="{% url 'salads' %}">
+                    <img class="recipe-image" src="{% static 'images/salad_default.jpg' %}" alt="Salads">
+                </a>
                 <h2 class="recipe-title"><a href="{% url 'salads' %}">Salads</a></h2>
             </div>
 
             <div class="recipe-card">
-                <img class="recipe-image" src="{% static 'images/dessert_default.jpg' %}" alt="Desserts">
+                <a href="{% url 'desserts' %}">
+                    <img class="recipe-image" src="{% static 'images/dessert_default.jpg' %}" alt="Desserts">
+                </a>
                 <h2 class="recipe-title"><a href="{% url 'desserts' %}">Desserts</a></h2>
             </div>
 

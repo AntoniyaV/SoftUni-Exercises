@@ -7,7 +7,7 @@ from cooking_recipes.recipes.models import Recipe
 
 
 def recipe_create_warning(request):
-    return render(request, 'recipe_create_warning.html')
+    return render(request, 'common/sign_in_warning.html')
 
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):

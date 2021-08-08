@@ -1,16 +1,14 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-        <h1 class="text-center">Edit recipe</h1>
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                <form enctype="multipart/form-data" method="post" class="furniture-form" action="{% url 'recipe-edit' recipe.id %}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="btn btn-primary mt-2" type="submit">Edit</button>
-                </form>
-            </div>
-            <div class="col-lg-3"></div>
-        </div>
+    <h1>Edit recipe</h1>
+    <div align="center">
+        <form enctype="multipart/form-data" method="post" action="{% url 'recipe-edit' recipe.id %}">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button class="btn">Edit</button>
+        </form>
+    </div>
 {% endblock %}
