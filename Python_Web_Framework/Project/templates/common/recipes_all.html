@@ -1,8 +1,11 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1>All {{ category }} Recipes</h1>
-    <div class="home-page-section">
+    {% if not recipe_list %}
+        <h1>There are no {{ category }} recipes yet.</h1>
+    {% else %}
+        <h1>All {{ category }} Recipes</h1>
+        <div class="home-page-section">
         <div class="recipe-card container">
             {% for recipe in recipe_list %}
                 <div class="recipe-card">
@@ -15,8 +18,10 @@
                 </div>
             {% endfor %}
         </div>
-        <div align="center">
-            <a href="javascript:history.back()" class="btn back-btn">Go back</a>
-        </div>
-    </div>
+    {% endif %}
+<hr>
+<div align="center">
+    <a href="javascript:history.back()" class="btn back-btn">Go back</a>
+</div>
+</div>
 {% endblock %}

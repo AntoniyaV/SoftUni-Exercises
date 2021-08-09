@@ -3,6 +3,7 @@ from cooking_recipes.common import views
 
 urlpatterns = [
     path('', views.landing_page, name='landing'),
+    path('login-required/', views.sign_in_warning, name='login-required'),
     path('main-dishes/', views.MainDishesListView.as_view(), name='main-dishes'),
     path('soups/', views.SoupsListView.as_view(), name='soups'),
     path('salads/', views.SaladsListView.as_view(), name='salads'),

@@ -8,6 +8,10 @@ def landing_page(request):
     return render(request, 'common/landing_page.html')
 
 
+def sign_in_warning(request):
+    return render(request, 'common/sign_in_warning.html')
+
+
 class RecipesListView(ListView):
     template_name = 'common/recipes_all.html'
     model = Recipe

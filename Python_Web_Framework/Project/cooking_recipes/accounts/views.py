@@ -1,13 +1,14 @@
-from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth import get_user_model, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, FormView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView
 
-from cooking_recipes.accounts.forms import SignUpForm, SignInForm, ProfileForm, UserForm
-from cooking_recipes.accounts.models import RecipesUserProfile, RecipesUser
+from cooking_recipes.accounts.forms import SignUpForm, ProfileForm, UserForm
+from cooking_recipes.accounts.models import RecipesUserProfile
 from cooking_recipes.recipes.models import Recipe
 
 UserModel = get_user_model()
@@ -21,63 +22,15 @@ class SignUpView(CreateView):
 
 class SignInView(LoginView):
     template_name = 'accounts/sign-in.html'
-    form_class = SignInForm
 
     def get_success_url(self):
         return reverse('landing')
-
-
-# def sign_in(request):
-#     if request.method == 'POST':
-#         form = SignInForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('landing')
-#
-#     else:
-#         form = SignInForm()
-#
-#     context = {
-#         'form': form
-#     }
-#
-#     return render(request, 'accounts/sign-in.html', context=context)
 
 
 def sign_out(request):
     logout(request)
     return redirect('landing')
 
-
-# class ProfileDetailsView(LoginRequiredMixin, FormView):
-#     template_name = 'accounts/profile_details.html'
-#     form_class = ProfileForm
-#     success_url = reverse_lazy('profile')
-#     profile_object = None
-#
-#     login_url = 'sign-in'
-#
-#     def get(self, request, *args, **kwargs):
-#         self.profile_object = RecipesUserProfile.objects.get(pk=request.user.id)
-#         return super().get(request, *args, **kwargs)
-#
-#     def post(self, request, *args, **kwargs):
-#         self.profile_object = RecipesUserProfile.objects.get(pk=request.user.id)
-#         return super().post(request, *args, **kwargs)
-#
-#     def form_valid(self, form):
-#         self.profile_object.profile_picture = form.cleaned_data['profile_picture']
-#         self.profile_object.save()
-#         return super().form_valid(form)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         context['recipes'] = Recipe.objects.filter(user_id=self.request.user.id)
-#         context['profile'] = self.profile_object
-#
-#         return context
 
 class ProfileDetailsView(LoginRequiredMixin, DetailView):
     template_name = 'accounts/profile_details.html'
@@ -94,6 +47,7 @@ class ProfileDetailsView(LoginRequiredMixin, DetailView):
         return context
 
 
+@login_required(login_url='login-required')
 def edit_profile(request, pk):
     user = UserModel.objects.get(pk=pk)
     profile = RecipesUserProfile.objects.get(pk=pk)
@@ -117,20 +71,3 @@ def edit_profile(request, pk):
     }
 
     return render(request, 'accounts/profile_edit.html', context=context)
-
-
-# class ProfileEditView(UpdateView):
-#     template_name = 'accounts/profile_edit.html'
-#     model = RecipesUserProfile
-#     fields = ('profile_picture',)
-#     context_object_name = 'profile'
-#     profile = None
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         profile = context['profile']
-#         return context
-#
-#     def get_success_url(self):
-#         pk = self.profile.user.id
-#         return reverse('profile-details', kwargs={'pk': pk})
