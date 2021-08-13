@@ -6,12 +6,19 @@ In the project you can find one main package containing three Django application
 
 ### Accounts app
 This app contains the following files:
+
 models.py - contains the extended User model as well as the User Profile model linked to it.
+
 forms.py - contains the model forms for the User and User Profile models. It also contains a Sign up form.
+
 manager.py - contains a manager that helps to create and save the extended User
+
 signals.py - contains signals so that the Profile model will be automatically created and updated when the User instance, to which it is linked, is created and updated.
+
 admins.py - contains the User model admin registration so that it can be available through the Django admin site.
+
 views.py - contains the controllers for the Sign up, Sign in and Sign out functionalities as well as for the Profile details and edit options.
+
 urls.py - contains the paths related to the views.
 
 ### Common app
