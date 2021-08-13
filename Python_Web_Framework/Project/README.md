@@ -1,6 +1,6 @@
 # Cooking Recipes Django web application
 The current project represents a Python web application implemented using the Django Framework. It was created as part of the final exam for the SoftUni course "Python Web Framework".
-This application is a simple website for sharing cooking recipes. Its functionalities include user and profile creation as well as sharing and viewing recipies.
+This application is a simple website for sharing cooking recipes. Its functionalities include user and profile creation, profile update as well as sharing, viewing, editing and deleting recipies.
 
 In the project you can find one main package containing three Django applications: accounts, common and recipes. Additionally there are also directories for the HTML templates, static files, media files, uploaded by the user, as well as a tests directory.
 
@@ -11,7 +11,7 @@ models.py - contains the extended User model as well as the User Profile model l
 
 forms.py - contains the model forms for the User and User Profile models. It also contains a Sign up form.
 
-manager.py - contains a manager that helps to create and save the extended User
+manager.py - contains a manager that helps to create and save the extended User.
 
 signals.py - contains signals so that the Profile model will be automatically created and updated when the User instance, to which it is linked, is created and updated.
 
