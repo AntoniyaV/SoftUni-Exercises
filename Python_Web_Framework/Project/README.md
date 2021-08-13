@@ -23,15 +23,22 @@ urls.py - contains the paths related to the views.
 
 ### Common app
 This app contains the following files:
+
 views.py - contains the views for the landing page, a "login required" warning page and pages for the different categories of recipes.
+
 urls.py - contains the paths for the above mentioned views.
 
 ### Recipes app
 This app contains the following files:
+
 models.py - contains the Recipe model.
+
 validators.py - contains a validator for the "recipe_type" field of the Recipe model.
+
 admin.py - contains the Recipe model admin registration so that recipes can be viewed, added, edited and deleted through the Django admin site.
+
 views.py - contains controllers for the create, edit, delete and details functionalities of the Recipe model.
+
 urls.py - contains the paths for the views.
 
 ### Templates folder
@@ -48,4 +55,5 @@ Contains a subdirectory for each of the apps which includes tests for the forms,
 
 ### Additional files in the main Django app directory
 setting.py - the three apps are added in the INSTALLED_APPS; the database is set to work with PostgreSQL; media and static roots are set; AUTH_USER_MODEL is set to the extended User model.
+
 urls.py - contains the main paths: to the admin and each of the apps.
