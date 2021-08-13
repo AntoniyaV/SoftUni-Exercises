@@ -1,14 +1,18 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1>Edit recipe</h1>
-    <div align="center">
-        <form enctype="multipart/form-data" method="post" action="{% url 'recipe-edit' recipe.id %}">
-            {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <button class="btn">Edit</button>
-        </form>
-    </div>
+    {% if not request.user == recipe.user %}
+        <h1>You can't edit recipes by other users.</h1>
+    {% else %}
+        <h1>Edit recipe</h1>
+        <div align="center">
+            <form enctype="multipart/form-data" method="post" action="{% url 'recipe-edit' recipe.id %}">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <button class="btn">Edit</button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}

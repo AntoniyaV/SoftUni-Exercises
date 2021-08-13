@@ -1,18 +1,22 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1 class="text-center">Edit profile</h1>
-    <div class="row">
-        <div align="center">
-            <form enctype="multipart/form-data" method="post" class="furniture-form"
-                  action="{% url 'profile-edit' user.id %}">
-                {% csrf_token %}
-                <table>
-                    {{ user_form.as_table }}
-                    {{ profile_form.as_table }}
-                </table>
-                <button class="btn">Edit</button>
-            </form>
+    {% if not request.user == profile.user %}
+        <h1>You can't edit other users profile data.</h1>
+    {% else %}
+        <h1 class="text-center">Edit profile</h1>
+        <div class="row">
+            <div align="center">
+                <form enctype="multipart/form-data" method="post" class="furniture-form"
+                      action="{% url 'profile-edit' profile.user_id %}">
+                    {% csrf_token %}
+                    <table>
+                        {{ user_form.as_table }}
+                        {{ profile_form.as_table }}
+                    </table>
+                    <button class="btn">Edit</button>
+                </form>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

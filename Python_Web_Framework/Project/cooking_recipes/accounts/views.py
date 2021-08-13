@@ -66,8 +66,10 @@ def edit_profile(request, pk):
         profile_form = ProfileForm(instance=profile)
 
     context = {
+        'profile': profile,
         'user_form': user_form,
         'profile_form': profile_form,
     }
 
     return render(request, 'accounts/profile_edit.html', context=context)
+

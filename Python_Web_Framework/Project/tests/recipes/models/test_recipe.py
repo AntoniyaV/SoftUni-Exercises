@@ -6,7 +6,7 @@ from cooking_recipes.recipes.models import Recipe
 
 
 class RecipeTests(TestCase):
-    def test_createRecipe_whenMissingOrInvalidData_shouldRaise(self):
+    def test_createRecipe_whenMissingOrInvalidData_shouldRaiseError(self):
         user = RecipesUser(
             email='valid@mail.com',
             password='V@lidPass123',
@@ -49,3 +49,23 @@ class RecipeTests(TestCase):
         recipe.save()
 
         self.assertIsNotNone(recipe)
+
+    def test_strRecipe_shouldReturnRecipeName(self):
+        user = RecipesUser(
+            email='valid@mail.com',
+            password='V@lidPass123',
+        )
+        user.save()
+
+        recipe = Recipe.objects.create(
+            recipe_type=Recipe.MAIN_DISH,
+            name='Valid name',
+            ingredients=['ingredient1', 'ingredient2'],
+            instructions='Valid instructions',
+            image='valid/image/path.jpg',
+            user=user,
+        )
+
+        recipe_str = str(recipe)
+
+        self.assertEqual(recipe.name, recipe_str)

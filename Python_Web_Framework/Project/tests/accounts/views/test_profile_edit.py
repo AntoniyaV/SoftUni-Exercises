@@ -14,8 +14,7 @@ class ProfileEditTests(RecipesProjectTestCase):
 
         response = self.client.post(
             reverse('profile-edit',
-                    kwargs={'pk': self.user.id}
-                    ),
+                    kwargs={'pk': self.user.id}),
             data={
                 'first_name': 'NewFirstName',
                 'last_name': 'NewLastName',

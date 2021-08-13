@@ -1,15 +1,19 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1>Are you sure you want to delete <u>{{ recipe.name }}</u> recipe?</h1>
+    {% if not request.user == recipe.user %}
+        <h1>You can't delete recipes by other users.</h1>
+    {% else %}
+        <h1>Are you sure you want to delete <u>{{ recipe.name }}</u> recipe?</h1>
         <div>
             <form method="post" action="{% url 'recipe-delete' recipe.id %}">
                 {% csrf_token %}
                 {{ form }}
-            <a class="btn delete-btn">Delete this recipe</a>
+                <button class="btn delete-btn">Delete this recipe</button>
             </form>
         </div>
         <div align="center">
             <a class="btn" href="javascript:history.back()">No, go back</a>
         </div>
+    {% endif %}
 {% endblock %}

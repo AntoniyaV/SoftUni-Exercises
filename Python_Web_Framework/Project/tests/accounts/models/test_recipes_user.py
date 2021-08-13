@@ -46,11 +46,11 @@ class RecipesUserTests(TestCase):
         user = RecipesUser(
             email='valid@mail.com',
             password='V@lidPass123',
-            first_name='Firstname',
+            first_name='FirstName',
             last_name='LastName',
         )
 
         full_name = user.get_full_name()
-        expected_full_name = 'Firstname LastName'
+        expected_full_name = 'FirstName LastName'
 
         self.assertEqual(expected_full_name, full_name)

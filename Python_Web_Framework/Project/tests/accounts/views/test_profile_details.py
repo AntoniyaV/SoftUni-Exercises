@@ -23,7 +23,7 @@ class ProfileDetailsTests(RecipesProjectTestCase):
         response = self.client.get(reverse('profile-details', kwargs={'pk': new_user.id}))
 
         self.assertEqual(200, response.status_code)
-        self.assertListEqual([], list(response.context['recipes']))
+        self.assertQuerysetEqual(response.context['recipes'], [])
         self.assertEqual(new_user.id, response.context['profile'].user_id)
 
     def test_getDetails_whenLoggedInWithRecipes_shouldGetDetailsWithRecipes(self):
@@ -32,5 +32,5 @@ class ProfileDetailsTests(RecipesProjectTestCase):
         response = self.client.get(reverse('profile-details', kwargs={'pk': self.user.id}))
 
         self.assertEqual(200, response.status_code)
-        self.assertListEqual([self.recipe], list(response.context['recipes']))
+        self.assertQuerysetEqual(response.context['recipes'], [self.recipe])
         self.assertEqual(self.user.id, response.context['profile'].user_id)

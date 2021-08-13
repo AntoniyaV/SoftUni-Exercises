@@ -15,7 +15,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(RecipeCreateView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class RecipeDetailsView(DetailView):
@@ -38,7 +38,7 @@ class RecipeEditView(LoginRequiredMixin, UpdateView):
     model = Recipe
     fields = ('recipe_type', 'name', 'ingredients', 'instructions', 'image')
 
-    login_url = 'sign-in'
+    login_url = 'login-required'
 
     def get_success_url(self):
         pk = self.kwargs['pk']
@@ -49,4 +49,4 @@ class RecipeDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'recipe_delete.html'
     model = Recipe
     success_url = reverse_lazy('landing')
-    login_url = 'sign-in'
+    login_url = 'login-required'

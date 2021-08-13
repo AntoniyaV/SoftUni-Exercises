@@ -24,20 +24,20 @@ class RecipesListView(ListView):
 
 
 class MainDishesListView(RecipesListView):
-    category = 'Main Dish'
+    category = Recipe.MAIN_DISH
     queryset = Recipe.objects.filter(recipe_type=category)
 
 
 class SoupsListView(RecipesListView):
-    category = 'Soup'
+    category = Recipe.SOUP
     queryset = Recipe.objects.filter(recipe_type=category)
 
 
 class SaladsListView(RecipesListView):
-    category = 'Salad'
+    category = Recipe.SALAD
     queryset = Recipe.objects.filter(recipe_type=category)
 
 
 class DessertsListView(RecipesListView):
-    category = 'Dessert'
+    category = Recipe.DESSERT
     queryset = Recipe.objects.filter(recipe_type=category)

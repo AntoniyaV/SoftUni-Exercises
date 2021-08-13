@@ -19,9 +19,9 @@
             {% endif %}
         </div>
 
-        {% if request.user.id == profile.user.id %}
+        {% if request.user.id == profile.user_id %}
             <div align="center">
-                <p><a href="{% url 'profile-edit' request.user.id %}" class="btn">Edit Profile</a></p>
+                <p><a href="{% url 'profile-edit' profile.user_id %}" class="btn">Edit Profile</a></p>
             </div>
         {% endif %}
     </div>
@@ -48,7 +48,7 @@
 
         {% else %}
             <div>
-                {% if request.user.id == profile.user.id %}
+                {% if request.user.id == profile.user_id %}
                     <h2>You haven't shared any recipes yet.</h2>
                     <a href="{% url 'recipe-create' %}" class="btn">Share a recipe</a>
                 {% endif %}

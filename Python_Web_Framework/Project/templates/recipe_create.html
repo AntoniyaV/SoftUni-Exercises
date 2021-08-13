@@ -7,7 +7,6 @@
         <form enctype="multipart/form-data" method="post" action="{% url 'recipe-create' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            {{ form.errors }}
             <button class="btn">Create</button>
         </form>
     </div>
